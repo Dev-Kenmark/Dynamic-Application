@@ -35,9 +35,9 @@ namespace DynamicApplication
             pnlStack.Children.Add(btn); 
 
             UserControls ctrl = new UserControls();
-            
-            pnlDock.Children.Add(ctrl);
-            
+             
+            pnlDock.Children.Add(ctrl);         
+
         }
 
     }

@@ -23,6 +23,20 @@ namespace DynamicApplication
         public UserControls()
         {
             InitializeComponent();
+            AddButton();
+           
+        }
+        public void AddButton()
+        {
+            TextBox txtSample = new TextBox();
+            txtSample.Text = "Textbox Sample";
+            TextBox txtSample1 = new TextBox();
+            txtSample1.Text = "Textbox Sample 2nd";
+
+            stackPanel.Orientation = Orientation.Vertical;
+            stackPanel.Margin = new Thickness(10);
+            stackPanel.Children.Add(txtSample);
+            stackPanel.Children.Add(txtSample1);
         }
     }
 }
