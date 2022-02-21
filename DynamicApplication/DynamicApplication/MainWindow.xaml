@@ -5,9 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DynamicApplication"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <StackPanel HorizontalAlignment="Left" Height="159" Margin="70,72,0,0" VerticalAlignment="Top" Width="198"/>
-
-    </Grid>
+        Title="MainWindow" Height="450" Width="770.732" Loaded="Window_Loaded">
+    <DockPanel x:Name="pnlDock" HorizontalAlignment="Left" Height="418" LastChildFill="False" VerticalAlignment="Top" Width="153"/>
 </Window>

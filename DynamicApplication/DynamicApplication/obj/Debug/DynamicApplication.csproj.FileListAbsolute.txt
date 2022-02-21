@@ -1,0 +1,15 @@
+E:\Unity Project Repo\Dynamic-Application\DynamicApplication\DynamicApplication\bin\Debug\DynamicApplication.exe.config
+E:\Unity Project Repo\Dynamic-Application\DynamicApplication\DynamicApplication\bin\Debug\DynamicApplication.exe
+E:\Unity Project Repo\Dynamic-Application\DynamicApplication\DynamicApplication\bin\Debug\DynamicApplication.pdb
+E:\Unity Project Repo\Dynamic-Application\DynamicApplication\DynamicApplication\obj\Debug\DynamicApplication.csproj.AssemblyReference.cache
+E:\Unity Project Repo\Dynamic-Application\DynamicApplication\DynamicApplication\obj\Debug\MainWindow.g.cs
+E:\Unity Project Repo\Dynamic-Application\DynamicApplication\DynamicApplication\obj\Debug\App.g.cs
+E:\Unity Project Repo\Dynamic-Application\DynamicApplication\DynamicApplication\obj\Debug\DynamicApplication_MarkupCompile.cache
+E:\Unity Project Repo\Dynamic-Application\DynamicApplication\DynamicApplication\obj\Debug\DynamicApplication_MarkupCompile.lref
+E:\Unity Project Repo\Dynamic-Application\DynamicApplication\DynamicApplication\obj\Debug\MainWindow.baml
+E:\Unity Project Repo\Dynamic-Application\DynamicApplication\DynamicApplication\obj\Debug\DynamicApplication.g.resources
+E:\Unity Project Repo\Dynamic-Application\DynamicApplication\DynamicApplication\obj\Debug\DynamicApplication.Properties.Resources.resources
+E:\Unity Project Repo\Dynamic-Application\DynamicApplication\DynamicApplication\obj\Debug\DynamicApplication.csproj.GenerateResource.cache
+E:\Unity Project Repo\Dynamic-Application\DynamicApplication\DynamicApplication\obj\Debug\DynamicApplication.csproj.CoreCompileInputs.cache
+E:\Unity Project Repo\Dynamic-Application\DynamicApplication\DynamicApplication\obj\Debug\DynamicApplication.exe
+E:\Unity Project Repo\Dynamic-Application\DynamicApplication\DynamicApplication\obj\Debug\DynamicApplication.pdb
