@@ -6,5 +6,8 @@
         xmlns:local="clr-namespace:DynamicApplication"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="770.732" Loaded="Window_Loaded">
-    <DockPanel x:Name="pnlDock" HorizontalAlignment="Left" Height="418" LastChildFill="False" VerticalAlignment="Top" Width="153"/>
+    <Canvas HorizontalAlignment="Left" Height="440" VerticalAlignment="Top" Width="761" Margin="0,0,0,-21">
+        <StackPanel x:Name="pnlStack" HorizontalAlignment="Left" Height="430" VerticalAlignment="Top" Width="99" Background="#FF2A5E72"/>
+        <DockPanel x:Name="pnlDock" Height="430" LastChildFill="False" Canvas.Left="99" Width="662"/>
+    </Canvas>
 </Window>

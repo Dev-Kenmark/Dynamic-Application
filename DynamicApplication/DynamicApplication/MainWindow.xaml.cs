@@ -27,7 +27,18 @@ namespace DynamicApplication
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-        
+            Button btn = new Button();
+            btn.Content = "Add";
+              
+            pnlStack.Orientation = Orientation.Vertical;
+            pnlStack.Margin = new Thickness(10);
+            pnlStack.Children.Add(btn); 
+
+            UserControls ctrl = new UserControls();
+            
+            pnlDock.Children.Add(ctrl);
+            
         }
+
     }
 }

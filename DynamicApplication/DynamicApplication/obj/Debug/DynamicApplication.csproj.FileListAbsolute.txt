@@ -13,3 +13,5 @@ E:\Unity Project Repo\Dynamic-Application\DynamicApplication\DynamicApplication\
 E:\Unity Project Repo\Dynamic-Application\DynamicApplication\DynamicApplication\obj\Debug\DynamicApplication.csproj.CoreCompileInputs.cache
 E:\Unity Project Repo\Dynamic-Application\DynamicApplication\DynamicApplication\obj\Debug\DynamicApplication.exe
 E:\Unity Project Repo\Dynamic-Application\DynamicApplication\DynamicApplication\obj\Debug\DynamicApplication.pdb
+E:\Unity Project Repo\Dynamic-Application\DynamicApplication\DynamicApplication\obj\Debug\UserControls.g.cs
+E:\Unity Project Repo\Dynamic-Application\DynamicApplication\DynamicApplication\obj\Debug\UserControls.baml
