@@ -38,11 +38,11 @@ namespace DynamicApplication
         public static string mysqlConString;
         public static MySqlConnection mycon = new MySqlConnection(mysqlConString);
 
-        //postgre
+        /*postgre
         private static string postgrefile = AppDomain.CurrentDomain.BaseDirectory + "\\postgreFile";
         public static string postgreConString;
         public static NpgsqlConnection pgcon = new NpgsqlConnection(postgreConString);
-
+        */
 
         //mssql
         public static void MsSqlInitializeFile()
@@ -96,7 +96,7 @@ namespace DynamicApplication
             return str.Trim();
         }
 
-        //postgre
+        /*postgre
         public static void PostgreInitializeFile()
         {
             if (!File.Exists(postgrefile))
@@ -121,7 +121,7 @@ namespace DynamicApplication
 
             return str.Trim();
         }
-
+        */
         public void AddButton()
         {
             TextBox txtSample = new TextBox();

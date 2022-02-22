@@ -35,6 +35,7 @@ namespace DynamicApplication
         public MainWindow()
         {
             InitializeComponent();
+            Check();
         }
 
         public static void InitializeFile()
@@ -141,18 +142,24 @@ namespace DynamicApplication
             pgcon = new NpgsqlConnection(postgreConString);
             mcon.Open();
             mcon.Close();
-            Button btn = new Button();
-            btn.Content = "Add";
-              
-            pnlStack.Orientation = Orientation.Vertical;
-            pnlStack.Margin = new Thickness(10);
-            pnlStack.Children.Add(btn); 
 
-            UserControls ctrl = new UserControls();
-             
-            pnlDock.Children.Add(ctrl);         
+
+
+            
 
         }
+        public void Check()
+        {
+            Button btn = new Button();
+            btn.Content = "Add";
 
+            pnlStack.Orientation = Orientation.Vertical;
+            pnlStack.Margin = new Thickness(10);
+            pnlStack.Children.Add(btn);
+             
+            UserControls ctrl = new UserControls();
+
+            pnlDock.Children.Add(ctrl);
+        }
     }
 }
