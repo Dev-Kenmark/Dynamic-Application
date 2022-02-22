@@ -24,45 +24,56 @@ namespace DynamicApplication
     /// </summary>
     public partial class MainWindow : Window
     {
+        private static string dbasefile = AppDomain.CurrentDomain.BaseDirectory + "\\dbFile";
+        private static string mysqldbasefile = AppDomain.CurrentDomain.BaseDirectory + "\\mysqldbFile";
+        private static string postgrefile = AppDomain.CurrentDomain.BaseDirectory + "\\postgreFile";
+        public static string connString, mysqlconnString, postgreConString;
+        public static SqlConnection con = new SqlConnection(connString);
+        public static NpgsqlConnection pgcon;
+        public static MySqlConnection mcon;
+
         public MainWindow()
         {
             InitializeComponent();
         }
 
-        //mssql
-        private static string mssqlfile = AppDomain.CurrentDomain.BaseDirectory + "\\mssqlFile";
-        public static string mssqlConString;
-        public static SqlConnection mscon = new SqlConnection(mssqlConString);
-        //mysql
-        private static string mysqlfile = AppDomain.CurrentDomain.BaseDirectory + "\\mysqlFile";
-        public static string mysqlConString;
-        public static MySqlConnection mycon = new MySqlConnection(mysqlConString);
-
-        //postgre
-        private static string postgrefile = AppDomain.CurrentDomain.BaseDirectory + "\\postgreFile";
-        public static string postgreConString;
-        public static NpgsqlConnection pgcon = new NpgsqlConnection(postgreConString);
-
-
-        //mssql
-        public static void MsSqlInitializeFile()
+        public static void InitializeFile()
         {
-            if (!File.Exists(mssqlfile))
+            if (!File.Exists(dbasefile))
             {
-                StreamWriter sw = new StreamWriter(mssqlfile);
+                StreamWriter sw = new StreamWriter(dbasefile);
                 sw.WriteLine("");
                 sw.Dispose();
                 sw.Close();
             }
         }
 
-        public static string MsSqlRead()
+        public static void MInitializeFile()
         {
-            if (!File.Exists(mssqlfile))
+            if (!File.Exists(mysqldbasefile))
+            {
+                StreamWriter sw = new StreamWriter(mysqldbasefile);
+                sw.WriteLine("");
+                sw.Dispose();
+                sw.Close();
+            }
+        }
+
+        public static void Write(string strData)
+        {
+            StreamWriter sw = new StreamWriter(dbasefile);
+            sw.WriteLine(strData);
+            sw.Dispose();
+            sw.Close();
+        }
+
+        public static string Read()
+        {
+            if (!File.Exists(dbasefile))
             {
                 return "";
             }
-            StreamReader sr = new StreamReader(mssqlfile);
+            StreamReader sr = new StreamReader(dbasefile);
             string str = sr.ReadToEnd();
             sr.Dispose();
             sr.Close();
@@ -70,33 +81,27 @@ namespace DynamicApplication
             return str.Trim();
         }
 
-        //mysql
-        public static void MySqlInitializeFile()
+        public static void MWrite(string strData)
         {
-            if (!File.Exists(mysqlfile))
-            {
-                StreamWriter sw = new StreamWriter(mysqlfile);
-                sw.WriteLine("");
-                sw.Dispose();
-                sw.Close();
-            }
+            StreamWriter sw = new StreamWriter(mysqldbasefile);
+            sw.WriteLine(strData);
+            sw.Dispose();
+            sw.Close();
         }
 
-        public static string MySqlRead()
+        public static string MRead()
         {
-            if (!File.Exists(mysqlfile))
+            if (!File.Exists(mysqldbasefile))
             {
                 return "";
             }
-            StreamReader sr = new StreamReader(mysqlfile);
+            StreamReader sr = new StreamReader(mysqldbasefile);
             string str = sr.ReadToEnd();
             sr.Dispose();
             sr.Close();
 
             return str.Trim();
         }
-
-        //postgre
         public static void PostgreInitializeFile()
         {
             if (!File.Exists(postgrefile))
@@ -122,15 +127,20 @@ namespace DynamicApplication
             return str.Trim();
         }
 
+
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            MsSqlInitializeFile();
-            mssqlConString = MsSqlRead();
-            MySqlInitializeFile();
-            mysqlConString = MySqlRead();
-            PostgreInitializeFile();
-            postgreConString = PostgreRead();
 
+            InitializeFile();
+            MInitializeFile();
+            connString = Read();
+            mysqlconnString = MRead();
+
+            mcon = new MySqlConnection(mysqlconnString);
+            pgcon = new NpgsqlConnection(postgreConString);
+            mcon.Open();
+            mcon.Close();
             Button btn = new Button();
             btn.Content = "Add";
               
