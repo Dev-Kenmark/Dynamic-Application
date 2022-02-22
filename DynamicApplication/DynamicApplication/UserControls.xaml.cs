@@ -142,20 +142,29 @@ namespace DynamicApplication
             }
             foreach(DataRow row in Dt.Rows)
             {
-                TextBox txtSample = new TextBox();
-                txtSample.Text = "Textbox Sample";
-                TextBox txtSample1 = new TextBox();
-                txtSample1.Text = "Textbox Sample 2nd";
+               
             }
-            //TextBox txtSample = new TextBox();
-            //txtSample.Text = "Textbox Sample";
-            //TextBox txtSample1 = new TextBox();
-            //txtSample1.Text = "Textbox Sample 2nd";
+            Label lblSample = new Label();
+            lblSample.Content = "First Name";
+            lblSample.FontFamily = new FontFamily("Century Gothic");
+            lblSample.FontSize = 13;
 
-            //stackPanel.Orientation = Orientation.Vertical;
-            //stackPanel.Margin = new Thickness(10);
-            //stackPanel.Children.Add(txtSample);
-            //stackPanel.Children.Add(txtSample1);
+            TextBox txtSample = new TextBox();
+            txtSample.Width = 150;
+            txtSample.FontFamily = new FontFamily("Century Gothic");
+            txtSample.FontSize = 15;
+
+            StackPanel pnl = new StackPanel();
+
+            pnl.Orientation = Orientation.Horizontal;
+            pnl.Margin = new Thickness(10);
+
+            pnl.Children.Add(lblSample);
+            pnl.Children.Add(txtSample);
+
+            stackPanel.Orientation = Orientation.Vertical;
+            stackPanel.Margin = new Thickness(10);
+            stackPanel.Children.Add(pnl);
         }
 
     }

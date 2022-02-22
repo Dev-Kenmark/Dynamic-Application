@@ -151,14 +151,28 @@ namespace DynamicApplication
         public void Check()
         {
             Button btn = new Button();
+
+            btn.Width = 75;
+            btn.Height = 40;
+
+            btn.Margin = new Thickness(10, 10, 10, 10);
+            btn.BorderBrush = Brushes.AliceBlue;
+            btn.BorderThickness = new Thickness(2, 2, 2, 2);
             btn.Content = "Add";
+            btn.FontFamily = new FontFamily("Century Gothic");
+            btn.FontSize = 15;
+            btn.FontWeight = FontWeights.UltraBold;
 
             pnlStack.Orientation = Orientation.Vertical;
             pnlStack.Margin = new Thickness(10);
-            pnlStack.Children.Add(btn);
-             
-            UserControls ctrl = new UserControls();
 
+            btn.Click += (s, e) =>
+            {
+                MessageBox.Show("KM THE GREAT!", "SAKALAM", MessageBoxButton.OK, MessageBoxImage.Information);
+            };
+
+            pnlStack.Children.Add(btn);
+            UserControls ctrl = new UserControls();
             pnlDock.Children.Add(ctrl);
         }
     }
