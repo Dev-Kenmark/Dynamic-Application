@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "5ecdbfab-ce0d-4d36-b716-92d1473bfdce": {
+      "ProjectGuid": "5ecdbfab-ce0d-4d36-b716-92d1473bfdce",
+      "DisplayName": "DynamicApplication",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}
