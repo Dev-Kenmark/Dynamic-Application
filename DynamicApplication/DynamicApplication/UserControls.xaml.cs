@@ -16,6 +16,8 @@ using System.Data.SqlClient;
 using Npgsql;
 using MySql.Data.MySqlClient;
 using System.IO;
+using System.Data;
+
 namespace DynamicApplication
 {
     /// <summary>
@@ -23,21 +25,22 @@ namespace DynamicApplication
     /// </summary>
     public partial class UserControls : UserControl
     {
+        private static string mssqlfile = AppDomain.CurrentDomain.BaseDirectory + "\\mssqlFile";
+        private static string mysqlfile = AppDomain.CurrentDomain.BaseDirectory + "\\mysqlFile";
+        public static string mssqlConString, mysqlConString;
+        public static SqlConnection mscon = new SqlConnection(mssqlConString);
+        public static MySqlConnection mycon;
+        public DataTable Dt = new DataTable();
+
         public UserControls()
         {
             InitializeComponent();
             AddButton();
-           
+            MsSqlInitializeFile();
+            mssqlConString = MsSqlRead();
+
         }
         //mssql
-        private static string mssqlfile = AppDomain.CurrentDomain.BaseDirectory + "\\mssqlFile";
-        public static string mssqlConString;
-        public static SqlConnection mscon;
-        //mysql
-        private static string mysqlfile = AppDomain.CurrentDomain.BaseDirectory + "\\mysqlFile";
-        public static string mysqlConString;
-        public static MySqlConnection mycon;
-
         /*postgre
         private static string postgrefile = AppDomain.CurrentDomain.BaseDirectory + "\\postgreFile";
         public static string postgreConString;
@@ -124,36 +127,36 @@ namespace DynamicApplication
         */
         public void AddButton()
         {
-            TextBox txtSample = new TextBox();
-            txtSample.Text = "Textbox Sample";
-            TextBox txtSample1 = new TextBox();
-            txtSample1.Text = "Textbox Sample 2nd";
-
-            stackPanel.Orientation = Orientation.Vertical;
-            stackPanel.Margin = new Thickness(10);
-            stackPanel.Children.Add(txtSample);
-            stackPanel.Children.Add(txtSample1);
-        }
-
-        private void DataGrid_Loaded(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Canvas_Loaded(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
-        {
             MsSqlInitializeFile();
-            MySqlInitializeFile();
             mssqlConString = MsSqlRead();
-            mysqlConString = MySqlRead();
+            string query = "SELECT * FROM dbo.TASK6TBL";
+            using (SqlConnection con = new SqlConnection(mssqlConString))
+            {
+                con.Open();
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    SqlDataAdapter da = new SqlDataAdapter(query, con);
+                    Dt = new DataTable("Test");
+                    da.Fill(Dt);
+                }
+            }
+            foreach(DataRow row in Dt.Rows)
+            {
+                TextBox txtSample = new TextBox();
+                txtSample.Text = "Textbox Sample";
+                TextBox txtSample1 = new TextBox();
+                txtSample1.Text = "Textbox Sample 2nd";
+            }
+            //TextBox txtSample = new TextBox();
+            //txtSample.Text = "Textbox Sample";
+            //TextBox txtSample1 = new TextBox();
+            //txtSample1.Text = "Textbox Sample 2nd";
 
-            //mscon = new MySqlConnection(mssqlConString);
-            //mycon = new NpgsqlConnection(mysqlConString);
+            //stackPanel.Orientation = Orientation.Vertical;
+            //stackPanel.Margin = new Thickness(10);
+            //stackPanel.Children.Add(txtSample);
+            //stackPanel.Children.Add(txtSample1);
         }
+
     }
 }

@@ -24,13 +24,13 @@ namespace DynamicApplication
     /// </summary>
     public partial class MainWindow : Window
     {
-        private static string dbasefile = AppDomain.CurrentDomain.BaseDirectory + "\\dbFile";
-        private static string mysqldbasefile = AppDomain.CurrentDomain.BaseDirectory + "\\mysqldbFile";
-        private static string postgrefile = AppDomain.CurrentDomain.BaseDirectory + "\\postgreFile";
-        public static string connString, mysqlconnString, postgreConString;
-        public static SqlConnection con = new SqlConnection(connString);
-        public static NpgsqlConnection pgcon;
-        public static MySqlConnection mcon;
+        //private static string dbasefile = AppDomain.CurrentDomain.BaseDirectory + "\\dbFile";
+        //private static string mysqldbasefile = AppDomain.CurrentDomain.BaseDirectory + "\\mysqldbFile";
+        //private static string postgrefile = AppDomain.CurrentDomain.BaseDirectory + "\\postgreFile";
+        //public static string connString, mysqlconnString, postgreConString;
+        //public static SqlConnection con = new SqlConnection(connString);
+        //public static NpgsqlConnection pgcon;
+        //public static MySqlConnection mcon;
 
         public MainWindow()
         {
@@ -38,116 +38,116 @@ namespace DynamicApplication
             Check();
         }
 
-        public static void InitializeFile()
-        {
-            if (!File.Exists(dbasefile))
-            {
-                StreamWriter sw = new StreamWriter(dbasefile);
-                sw.WriteLine("");
-                sw.Dispose();
-                sw.Close();
-            }
-        }
+        //public static void InitializeFile()
+        //{
+        //    if (!File.Exists(dbasefile))
+        //    {
+        //        StreamWriter sw = new StreamWriter(dbasefile);
+        //        sw.WriteLine("");
+        //        sw.Dispose();
+        //        sw.Close();
+        //    }
+        //}
 
-        public static void MInitializeFile()
-        {
-            if (!File.Exists(mysqldbasefile))
-            {
-                StreamWriter sw = new StreamWriter(mysqldbasefile);
-                sw.WriteLine("");
-                sw.Dispose();
-                sw.Close();
-            }
-        }
+        //public static void MInitializeFile()
+        //{
+        //    if (!File.Exists(mysqldbasefile))
+        //    {
+        //        StreamWriter sw = new StreamWriter(mysqldbasefile);
+        //        sw.WriteLine("");
+        //        sw.Dispose();
+        //        sw.Close();
+        //    }
+        //}
 
-        public static void Write(string strData)
-        {
-            StreamWriter sw = new StreamWriter(dbasefile);
-            sw.WriteLine(strData);
-            sw.Dispose();
-            sw.Close();
-        }
+        //public static void Write(string strData)
+        //{
+        //    StreamWriter sw = new StreamWriter(dbasefile);
+        //    sw.WriteLine(strData);
+        //    sw.Dispose();
+        //    sw.Close();
+        //}
 
-        public static string Read()
-        {
-            if (!File.Exists(dbasefile))
-            {
-                return "";
-            }
-            StreamReader sr = new StreamReader(dbasefile);
-            string str = sr.ReadToEnd();
-            sr.Dispose();
-            sr.Close();
+        //public static string Read()
+        //{
+        //    if (!File.Exists(dbasefile))
+        //    {
+        //        return "";
+        //    }
+        //    StreamReader sr = new StreamReader(dbasefile);
+        //    string str = sr.ReadToEnd();
+        //    sr.Dispose();
+        //    sr.Close();
 
-            return str.Trim();
-        }
+        //    return str.Trim();
+        //}
 
-        public static void MWrite(string strData)
-        {
-            StreamWriter sw = new StreamWriter(mysqldbasefile);
-            sw.WriteLine(strData);
-            sw.Dispose();
-            sw.Close();
-        }
+        //public static void MWrite(string strData)
+        //{
+        //    StreamWriter sw = new StreamWriter(mysqldbasefile);
+        //    sw.WriteLine(strData);
+        //    sw.Dispose();
+        //    sw.Close();
+        //}
 
-        public static string MRead()
-        {
-            if (!File.Exists(mysqldbasefile))
-            {
-                return "";
-            }
-            StreamReader sr = new StreamReader(mysqldbasefile);
-            string str = sr.ReadToEnd();
-            sr.Dispose();
-            sr.Close();
+        //public static string MRead()
+        //{
+        //    if (!File.Exists(mysqldbasefile))
+        //    {
+        //        return "";
+        //    }
+        //    StreamReader sr = new StreamReader(mysqldbasefile);
+        //    string str = sr.ReadToEnd();
+        //    sr.Dispose();
+        //    sr.Close();
 
-            return str.Trim();
-        }
-        public static void PostgreInitializeFile()
-        {
-            if (!File.Exists(postgrefile))
-            {
-                StreamWriter sw = new StreamWriter(postgrefile);
-                sw.WriteLine("");
-                sw.Dispose();
-                sw.Close();
-            }
-        }
+        //    return str.Trim();
+        //}
+        //public static void PostgreInitializeFile()
+        //{
+        //    if (!File.Exists(postgrefile))
+        //    {
+        //        StreamWriter sw = new StreamWriter(postgrefile);
+        //        sw.WriteLine("");
+        //        sw.Dispose();
+        //        sw.Close();
+        //    }
+        //}
 
-        public static string PostgreRead()
-        {
-            if (!File.Exists(postgrefile))
-            {
-                return "";
-            }
-            StreamReader sr = new StreamReader(postgrefile);
-            string str = sr.ReadToEnd();
-            sr.Dispose();
-            sr.Close();
+        //public static string PostgreRead()
+        //{
+        //    if (!File.Exists(postgrefile))
+        //    {
+        //        return "";
+        //    }
+        //    StreamReader sr = new StreamReader(postgrefile);
+        //    string str = sr.ReadToEnd();
+        //    sr.Dispose();
+        //    sr.Close();
 
-            return str.Trim();
-        }
+        //    return str.Trim();
+        //}
 
 
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
+        //private void Window_Loaded(object sender, RoutedEventArgs e)
+        //{
 
-            InitializeFile();
-            MInitializeFile();
-            connString = Read();
-            mysqlconnString = MRead();
+        //    InitializeFile();
+        //    MInitializeFile();
+        //    connString = Read();
+        //    mysqlconnString = MRead();
 
-            mcon = new MySqlConnection(mysqlconnString);
-            pgcon = new NpgsqlConnection(postgreConString);
-            mcon.Open();
-            mcon.Close();
+        //    mcon = new MySqlConnection(mysqlconnString);
+        //    pgcon = new NpgsqlConnection(postgreConString);
+        //    mcon.Open();
+        //    mcon.Close();
 
 
 
             
 
-        }
+        //}
         public void Check()
         {
             Button btn = new Button();

@@ -1,1 +1,2 @@
 
+server=localhost;port=3306;uid=root;pwd=Allcard*;database=insert;
