@@ -7,6 +7,6 @@
              mc:Ignorable="d" Height="403.659" Width="665.854">
     <Canvas HorizontalAlignment="Left" Height="404" VerticalAlignment="Top" Width="666">
         <StackPanel x:Name="stackPanel" HorizontalAlignment="Left" Height="450" VerticalAlignment="Top" Width="260" />
-        <DataGrid HorizontalAlignment="Left" Height="372" VerticalAlignment="Top" Width="348" Canvas.Left="293" Canvas.Top="10"/>
+        <DataGrid HorizontalAlignment="Left" Height="372" VerticalAlignment="Top" Width="348" Canvas.Left="293" Canvas.Top="10" Loaded="DataGrid_Loaded"/>
     </Canvas>
 </UserControl>
