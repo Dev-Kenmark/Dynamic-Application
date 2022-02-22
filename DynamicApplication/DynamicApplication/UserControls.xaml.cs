@@ -32,11 +32,11 @@ namespace DynamicApplication
         //mssql
         private static string mssqlfile = AppDomain.CurrentDomain.BaseDirectory + "\\mssqlFile";
         public static string mssqlConString;
-        public static SqlConnection mscon = new SqlConnection(mssqlConString);
+        public static SqlConnection mscon;
         //mysql
         private static string mysqlfile = AppDomain.CurrentDomain.BaseDirectory + "\\mysqlFile";
         public static string mysqlConString;
-        public static MySqlConnection mycon = new MySqlConnection(mysqlConString);
+        public static MySqlConnection mycon;
 
         /*postgre
         private static string postgrefile = AppDomain.CurrentDomain.BaseDirectory + "\\postgreFile";
@@ -138,6 +138,22 @@ namespace DynamicApplication
         private void DataGrid_Loaded(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void Canvas_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            MsSqlInitializeFile();
+            MySqlInitializeFile();
+            mssqlConString = MsSqlRead();
+            mysqlConString = MySqlRead();
+
+            //mscon = new MySqlConnection(mssqlConString);
+            //mycon = new NpgsqlConnection(mysqlConString);
         }
     }
 }
