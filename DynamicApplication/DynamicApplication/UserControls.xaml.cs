@@ -116,9 +116,7 @@ namespace DynamicApplication
         public static string PostgreRead()
         {
             if (!File.Exists(postgrefile))
-            {
-                return "";
-            }
+            c
             StreamReader sr = new StreamReader(postgrefile);
             string str = sr.ReadToEnd();
             sr.Dispose();
@@ -127,7 +125,7 @@ namespace DynamicApplication
             return str.Trim();
         }
         */
-        public void AddButton(int numParameters, string[] info)
+        public void AddButton(int numParameters, string[] info, int numButtons)
         {
           
             MsSqlInitializeFile();
@@ -144,11 +142,11 @@ namespace DynamicApplication
             //    }
             //}
  
-           for(int a = 0; a < numParameters; a++)
-            { 
-                  
+           for(int a = 1; a <= numParameters; a++)
+            {
+                
                 Label lblSample = new Label();
-                lblSample.Content = info[a];
+                lblSample.Content = info[a-1];
                 lblSample.FontFamily = new FontFamily("Century Gothic");
                 lblSample.FontSize = 13;
 
@@ -156,8 +154,6 @@ namespace DynamicApplication
                 txtSample.Width = 150;
                 txtSample.FontFamily = new FontFamily("Century Gothic");
                 txtSample.FontSize = 15;
-                
-
 
                 StackPanel pnl = new StackPanel();
                 pnl.Children.Clear();   
@@ -170,7 +166,42 @@ namespace DynamicApplication
 
                 stackPanel.Orientation = Orientation.Vertical;
                 stackPanel.Margin = new Thickness(10);
+                StackPanel pnlbtn = new StackPanel();
+                pnlbtn.Children.Clear();
+
+                pnlbtn.Orientation = Orientation.Horizontal;
+                pnlbtn.Margin = new Thickness(10);
+
+                
+                if (a == numParameters && numButtons != 0)
+                {
+                    for (int i = 0; i < numButtons; i++)
+                    {
+                        
+                        Button btn = new Button();
+                        //btn.Tag = Convert.ToInt32(row[0]);
+
+                        btn.Width = 75;
+                        btn.Height = 40;
+
+                        btn.Margin = new Thickness(10, 10, 10, 10);
+                        btn.BorderBrush = Brushes.AliceBlue;
+                        btn.BorderThickness = new Thickness(2, 2, 2, 2);
+                        string p = "btn" + info[a + i].ToString();
+                        string strtrim =  p.Trim();
+                        btn.Name = strtrim;
+                        btn.Content = info[a + i].ToString();
+
+                        btn.FontFamily = new FontFamily("Century Gothic");
+                        btn.FontSize = 15;
+                        btn.FontWeight = FontWeights.UltraBold;
+                        pnlbtn.Children.Add(btn);
+
+                    }
+
+                }
                 stackPanel.Children.Add(pnl);
+                stackPanel.Children.Add(pnlbtn);
             }
            
         }

@@ -186,3 +186,5 @@ E:\Unity Project Repo\Dynamic-Application\DynamicApplication\DynamicApplication\
 E:\Unity Project Repo\Dynamic-Application\DynamicApplication\DynamicApplication\obj\Debug\DynamicApplication.csproj.CopyComplete
 C:\Users\mac\Documents\Dynamic-Application\DynamicApplication\DynamicApplication\obj\Debug\UserControl2.g.cs
 C:\Users\mac\Documents\Dynamic-Application\DynamicApplication\DynamicApplication\obj\Debug\UserControl2.baml
+C:\Users\Charlie\Documents\GitHub\Dynamic-Application\DynamicApplication\DynamicApplication\obj\Debug\UserControl2.g.cs
+C:\Users\Charlie\Documents\GitHub\Dynamic-Application\DynamicApplication\DynamicApplication\obj\Debug\UserControl2.baml

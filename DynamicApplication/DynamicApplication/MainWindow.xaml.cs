@@ -32,7 +32,7 @@ namespace DynamicApplication
         public static MySqlConnection mycon;
         public DataTable Dt = new DataTable();
 
-        public int numParameters;
+        public int numParameters, numButtons;
         public string[] info;
         public MainWindow()
         {
@@ -131,11 +131,11 @@ namespace DynamicApplication
                 btn.Click += (s, e) =>
                 {
                     pnlDock.Children.Clear();
-                    if(row[1].ToString() == "Insert")
+                    if(row[2].ToString() == "2")
                     { 
                         
                         numParameters = Convert.ToInt32(row.ItemArray[4].ToString());
-
+                        numButtons = Convert.ToInt32(row.ItemArray[9].ToString());
                         UserControls ctrl = new UserControls();                    
   
                         string a = row.ItemArray[6].ToString();                   
@@ -146,10 +146,10 @@ namespace DynamicApplication
                             info = a.Split(',');                                        
                               
                         }
-                        ctrl.AddButton(numParameters, info);
+                        ctrl.AddButton(numParameters, info, numButtons);
                         pnlDock.Children.Add(ctrl);
                     }
-                    else if (row[1].ToString() == "View")
+                    else if (row[2].ToString() == "3")
                     {
                         numParameters = Convert.ToInt32(row.ItemArray[4].ToString());
                         UserControl2 ctrl = new UserControl2();;

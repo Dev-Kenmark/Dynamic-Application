@@ -6,6 +6,6 @@
              xmlns:local="clr-namespace:DynamicApplication"
              mc:Ignorable="d" Height="403.659" Width="665.854">
     <Canvas HorizontalAlignment="Left" Height="404" VerticalAlignment="Top" Width="666">
-        <StackPanel x:Name="stackPanel" HorizontalAlignment="Left" Height="450" VerticalAlignment="Top" Width="260" />
+        <StackPanel x:Name="stackPanel" Height="450" Width="401" />
     </Canvas>
 </UserControl>
