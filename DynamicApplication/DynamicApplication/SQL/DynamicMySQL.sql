@@ -1,0 +1,11 @@
+/****** Script for SelectTopNRows command from SSMS  ******/
+SELECT TOP (1000) [Id]
+      ,[Name]
+      ,[Type]
+      ,[Stored_Prod]
+      ,[No_Of_Parameters]
+      ,[Parameters]
+      ,[Parameters_Names]
+      ,[Dbtype]
+      ,[String_Connection]
+  FROM [Task6].[dbo].[Task6Tbl]
