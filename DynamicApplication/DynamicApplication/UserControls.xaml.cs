@@ -31,11 +31,13 @@ namespace DynamicApplication
         public static SqlConnection mscon = new SqlConnection(mssqlConString);
         public static MySqlConnection mycon;
         public DataTable Dt = new DataTable();
+        MainWindow main = new MainWindow();
 
+       
         public UserControls()
         {
             InitializeComponent();
-            AddButton();
+           
             MsSqlInitializeFile();
             mssqlConString = MsSqlRead();
 
@@ -125,8 +127,9 @@ namespace DynamicApplication
             return str.Trim();
         }
         */
-        public void AddButton()
+        public void AddButton(int numParameters, string[] info)
         {
+          
             MsSqlInitializeFile();
             mssqlConString = MsSqlRead();
             string query = "SELECT * FROM dbo.TASK6TBL";
@@ -140,31 +143,34 @@ namespace DynamicApplication
                     da.Fill(Dt);
                 }
             }
-            foreach(DataRow row in Dt.Rows)
+ 
+           for(int a = 0; a < numParameters; a++)
             {
-               
+                
+                Label lblSample = new Label();
+                lblSample.Content = info[a];
+                lblSample.FontFamily = new FontFamily("Century Gothic");
+                lblSample.FontSize = 13;
+
+                TextBox txtSample = new TextBox();
+                txtSample.Width = 150;
+                txtSample.FontFamily = new FontFamily("Century Gothic");
+                txtSample.FontSize = 15;
+
+                StackPanel pnl = new StackPanel();
+                pnl.Children.Clear();   
+
+                pnl.Orientation = Orientation.Horizontal;
+                pnl.Margin = new Thickness(10);
+
+                pnl.Children.Add(lblSample);
+                pnl.Children.Add(txtSample);
+
+                stackPanel.Orientation = Orientation.Vertical;
+                stackPanel.Margin = new Thickness(10);
+                stackPanel.Children.Add(pnl);
             }
-            Label lblSample = new Label();
-            lblSample.Content = "First Name";
-            lblSample.FontFamily = new FontFamily("Century Gothic");
-            lblSample.FontSize = 13;
-
-            TextBox txtSample = new TextBox();
-            txtSample.Width = 150;
-            txtSample.FontFamily = new FontFamily("Century Gothic");
-            txtSample.FontSize = 15;
-
-            StackPanel pnl = new StackPanel();
-
-            pnl.Orientation = Orientation.Horizontal;
-            pnl.Margin = new Thickness(10);
-
-            pnl.Children.Add(lblSample);
-            pnl.Children.Add(txtSample);
-
-            stackPanel.Orientation = Orientation.Vertical;
-            stackPanel.Margin = new Thickness(10);
-            stackPanel.Children.Add(pnl);
+           
         }
 
     }

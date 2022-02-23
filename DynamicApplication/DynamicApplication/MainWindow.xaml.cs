@@ -16,6 +16,7 @@ using System.Data.SqlClient;
 using Npgsql;
 using MySql.Data.MySqlClient;
 using System.IO;
+using System.Data;
 
 namespace DynamicApplication
 {
@@ -24,133 +25,156 @@ namespace DynamicApplication
     /// </summary>
     public partial class MainWindow : Window
     {
-        //private static string dbasefile = AppDomain.CurrentDomain.BaseDirectory + "\\dbFile";
-        //private static string mysqldbasefile = AppDomain.CurrentDomain.BaseDirectory + "\\mysqldbFile";
-        //private static string postgrefile = AppDomain.CurrentDomain.BaseDirectory + "\\postgreFile";
-        //public static string connString, mysqlconnString, postgreConString;
-        //public static SqlConnection con = new SqlConnection(connString);
-        //public static NpgsqlConnection pgcon;
-        //public static MySqlConnection mcon;
+        private static string mssqlfile = AppDomain.CurrentDomain.BaseDirectory + "\\mssqlFile";
+        private static string mysqlfile = AppDomain.CurrentDomain.BaseDirectory + "\\mysqlFile";
+        public static string mssqlConString, mysqlConString;
+        public static SqlConnection mscon = new SqlConnection(mssqlConString);
+        public static MySqlConnection mycon;
+        public DataTable Dt = new DataTable();
 
+        public int numParameters;
+        public string[] info;
         public MainWindow()
         {
             InitializeComponent();
             Check();
         }
 
-        //public static void InitializeFile()
-        //{
-        //    if (!File.Exists(dbasefile))
-        //    {
-        //        StreamWriter sw = new StreamWriter(dbasefile);
-        //        sw.WriteLine("");
-        //        sw.Dispose();
-        //        sw.Close();
-        //    }
-        //}
+        public static void MsSqlInitializeFile()
+        {
+            if (!File.Exists(mssqlfile))
+            {
+                StreamWriter sw = new StreamWriter(mssqlfile);
+                sw.WriteLine("");
+                sw.Dispose();
+                sw.Close();
+            }
+        }
 
-        //public static void MInitializeFile()
-        //{
-        //    if (!File.Exists(mysqldbasefile))
-        //    {
-        //        StreamWriter sw = new StreamWriter(mysqldbasefile);
-        //        sw.WriteLine("");
-        //        sw.Dispose();
-        //        sw.Close();
-        //    }
-        //}
+        public static string MsSqlRead()
+        {
+            if (!File.Exists(mssqlfile))
+            {
+                return "";
+            }
+            StreamReader sr = new StreamReader(mssqlfile);
+            string str = sr.ReadToEnd();
+            sr.Dispose();
+            sr.Close();
 
-        //public static void Write(string strData)
-        //{
-        //    StreamWriter sw = new StreamWriter(dbasefile);
-        //    sw.WriteLine(strData);
-        //    sw.Dispose();
-        //    sw.Close();
-        //}
+            return str.Trim();
+        }
 
-        //public static string Read()
-        //{
-        //    if (!File.Exists(dbasefile))
-        //    {
-        //        return "";
-        //    }
-        //    StreamReader sr = new StreamReader(dbasefile);
-        //    string str = sr.ReadToEnd();
-        //    sr.Dispose();
-        //    sr.Close();
+        //mysql
+        public static void MySqlInitializeFile()
+        {
+            if (!File.Exists(mysqlfile))
+            {
+                StreamWriter sw = new StreamWriter(mysqlfile);
+                sw.WriteLine("");
+                sw.Dispose();
+                sw.Close();
+            }
+        }
 
-        //    return str.Trim();
-        //}
+        public static string MySqlRead()
+        {
+            if (!File.Exists(mysqlfile))
+            {
+                return "";
+            }
+            StreamReader sr = new StreamReader(mysqlfile);
+            string str = sr.ReadToEnd();
+            sr.Dispose();
+            sr.Close();
 
-        //public static void MWrite(string strData)
-        //{
-        //    StreamWriter sw = new StreamWriter(mysqldbasefile);
-        //    sw.WriteLine(strData);
-        //    sw.Dispose();
-        //    sw.Close();
-        //}
+            return str.Trim();
+        }
 
-        //public static string MRead()
-        //{
-        //    if (!File.Exists(mysqldbasefile))
-        //    {
-        //        return "";
-        //    }
-        //    StreamReader sr = new StreamReader(mysqldbasefile);
-        //    string str = sr.ReadToEnd();
-        //    sr.Dispose();
-        //    sr.Close();
-
-        //    return str.Trim();
-        //}
-        //public static void PostgreInitializeFile()
-        //{
-        //    if (!File.Exists(postgrefile))
-        //    {
-        //        StreamWriter sw = new StreamWriter(postgrefile);
-        //        sw.WriteLine("");
-        //        sw.Dispose();
-        //        sw.Close();
-        //    }
-        //}
-
-        //public static string PostgreRead()
-        //{
-        //    if (!File.Exists(postgrefile))
-        //    {
-        //        return "";
-        //    }
-        //    StreamReader sr = new StreamReader(postgrefile);
-        //    string str = sr.ReadToEnd();
-        //    sr.Dispose();
-        //    sr.Close();
-
-        //    return str.Trim();
-        //}
-
-
-
-        //private void Window_Loaded(object sender, RoutedEventArgs e)
-        //{
-
-        //    InitializeFile();
-        //    MInitializeFile();
-        //    connString = Read();
-        //    mysqlconnString = MRead();
-
-        //    mcon = new MySqlConnection(mysqlconnString);
-        //    pgcon = new NpgsqlConnection(postgreConString);
-        //    mcon.Open();
-        //    mcon.Close();
-
-
-
-            
-
-        //}
         public void Check()
         {
-            Button btn = new Button();
+            MsSqlInitializeFile();
+            mssqlConString = MsSqlRead();
+            string query = "SELECT * FROM dbo.TASK6TBL";
+            using (SqlConnection con = new SqlConnection(mssqlConString))
+            {
+                con.Open();
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    SqlDataAdapter da = new SqlDataAdapter(query, con);
+                    Dt = new DataTable("Test");
+                    da.Fill(Dt);
+                }
+            }
+            foreach (DataRow row in Dt.Rows)
+            {
+                Button btn = new Button();
+                btn.Tag = Convert.ToInt32(row[0]);
+
+                btn.Width = 75;
+                btn.Height = 40;
+
+                btn.Margin = new Thickness(10, 10, 10, 10);
+                btn.BorderBrush = Brushes.AliceBlue;
+                btn.BorderThickness = new Thickness(2, 2, 2, 2);
+
+                btn.Name = "btn" + row[1].ToString();
+                btn.Content = row[1].ToString();
+
+                btn.FontFamily = new FontFamily("Century Gothic");
+                btn.FontSize = 15;
+                btn.FontWeight = FontWeights.UltraBold;
+
+                pnlStack.Orientation = Orientation.Vertical;
+                pnlStack.Margin = new Thickness(10);
+
+                btn.Click += (s, e) =>
+                {
+                    pnlDock.Children.Clear();
+                    if(row[1].ToString() == "Test")
+                    { 
+                        
+                        numParameters = Convert.ToInt32(row.ItemArray[4].ToString());
+
+                        UserControls ctrl = new UserControls();                    
+  
+                        string a = row.ItemArray[6].ToString();                   
+                        string strtrim = a.Trim(); 
+                    
+                        if (!strtrim.Equals(""))
+                        {
+                            info = a.Split(',');                                        
+                              
+                        }
+                        ctrl.AddButton(numParameters, info);
+                        pnlDock.Children.Add(ctrl);
+                    } 
+                    if (row[1].ToString() == "Test1")
+                    {  
+                        numParameters = Convert.ToInt32(row.ItemArray[4].ToString());
+                        UserControls ctrl = new UserControls(); 
+                        string a = row.ItemArray[6].ToString();
+                        string strtrim = a.Trim();
+
+                        if (!strtrim.Equals("")) 
+                        {
+                            info = a.Split(',');
+
+                        }
+                        ctrl.AddButton(numParameters, info);
+                        pnlDock.Children.Add(ctrl);
+
+                    } 
+                };
+
+                pnlStack.Children.Add(btn); 
+                
+            }
+
+            void AddTextLabel()
+            { 
+            }
+ /*           Button btn = new Button();
 
             btn.Width = 75;
             btn.Height = 40;
@@ -173,7 +197,8 @@ namespace DynamicApplication
 
             pnlStack.Children.Add(btn);
             UserControls ctrl = new UserControls();
-            pnlDock.Children.Add(ctrl);
+            pnlDock.Children.Add(ctrl); */
+            
         }
     }
 }
