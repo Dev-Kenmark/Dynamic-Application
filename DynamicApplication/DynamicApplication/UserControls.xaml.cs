@@ -152,7 +152,7 @@ namespace DynamicApplication
                 lblSample.FontFamily = new FontFamily("Century Gothic");
                 lblSample.FontSize = 13;
 
-                TextBox txtSample = new TextBox();
+                TextBox txtSample = new TextBox();  
                 txtSample.Width = 150;
                 txtSample.FontFamily = new FontFamily("Century Gothic");
                 txtSample.FontSize = 15;
