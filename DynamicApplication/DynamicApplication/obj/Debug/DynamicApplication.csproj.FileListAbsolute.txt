@@ -184,3 +184,5 @@ E:\Unity Project Repo\Dynamic-Application\DynamicApplication\DynamicApplication\
 E:\Unity Project Repo\Dynamic-Application\DynamicApplication\DynamicApplication\bin\Debug\System.Threading.Tasks.Extensions.xml
 E:\Unity Project Repo\Dynamic-Application\DynamicApplication\DynamicApplication\bin\Debug\System.ValueTuple.xml
 E:\Unity Project Repo\Dynamic-Application\DynamicApplication\DynamicApplication\obj\Debug\DynamicApplication.csproj.CopyComplete
+C:\Users\mac\Documents\Dynamic-Application\DynamicApplication\DynamicApplication\obj\Debug\UserControl2.g.cs
+C:\Users\mac\Documents\Dynamic-Application\DynamicApplication\DynamicApplication\obj\Debug\UserControl2.baml

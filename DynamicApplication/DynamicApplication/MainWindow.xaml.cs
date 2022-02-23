@@ -148,23 +148,14 @@ namespace DynamicApplication
                         }
                         ctrl.AddButton(numParameters, info);
                         pnlDock.Children.Add(ctrl);
-                    } 
-                    if (row[1].ToString() == "Delete")
-                    {  
+                    }
+                    else if (row[1].ToString() == "View")
+                    {
                         numParameters = Convert.ToInt32(row.ItemArray[4].ToString());
-                        UserControls ctrl = new UserControls(); 
-                        string a = row.ItemArray[6].ToString();
-                        string strtrim = a.Trim();
-
-                        if (!strtrim.Equals("")) 
-                        {
-                            info = a.Split(',');
-
-                        }
-                        ctrl.AddButton(numParameters, info);
+                        UserControl2 ctrl = new UserControl2();;
                         pnlDock.Children.Add(ctrl);
 
-                    } 
+                    }
                 };
 
                 pnlStack.Children.Add(btn); 

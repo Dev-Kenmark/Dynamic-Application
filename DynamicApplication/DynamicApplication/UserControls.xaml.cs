@@ -132,17 +132,17 @@ namespace DynamicApplication
           
             MsSqlInitializeFile();
             mssqlConString = MsSqlRead();
-            string query = "SELECT * FROM dbo.TASK6TBL";
-            using (SqlConnection con = new SqlConnection(mssqlConString))
-            {
-                con.Open();
-                using (SqlCommand cmd = new SqlCommand(query, con))
-                {
-                    SqlDataAdapter da = new SqlDataAdapter(query, con);
-                    Dt = new DataTable("Test");
-                    da.Fill(Dt);
-                }
-            }
+            //string query = "SELECT * FROM dbo.TASK6TBL";
+            //using (SqlConnection con = new SqlConnection(mssqlConString))
+            //{
+            //    con.Open();
+            //    using (SqlCommand cmd = new SqlCommand(query, con))
+            //    {
+            //        SqlDataAdapter da = new SqlDataAdapter(query, con);
+            //        Dt = new DataTable("Insert");
+            //        da.Fill(Dt);
+            //    }
+            //}
  
            for(int a = 0; a < numParameters; a++)
             { 
@@ -156,12 +156,14 @@ namespace DynamicApplication
                 txtSample.Width = 150;
                 txtSample.FontFamily = new FontFamily("Century Gothic");
                 txtSample.FontSize = 15;
+                
+
 
                 StackPanel pnl = new StackPanel();
                 pnl.Children.Clear();   
 
                 pnl.Orientation = Orientation.Horizontal;
-                pnl.Margin = new Thickness(10);
+                pnl.Margin = new Thickness(10); 
 
                 pnl.Children.Add(lblSample);
                 pnl.Children.Add(txtSample);
