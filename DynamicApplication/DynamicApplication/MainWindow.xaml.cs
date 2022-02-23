@@ -131,7 +131,7 @@ namespace DynamicApplication
                 btn.Click += (s, e) =>
                 {
                     pnlDock.Children.Clear();
-                    if(row[1].ToString() == "Test")
+                    if(row[1].ToString() == "Insert")
                     { 
                         
                         numParameters = Convert.ToInt32(row.ItemArray[4].ToString());
@@ -149,7 +149,7 @@ namespace DynamicApplication
                         ctrl.AddButton(numParameters, info);
                         pnlDock.Children.Add(ctrl);
                     } 
-                    if (row[1].ToString() == "Test1")
+                    if (row[1].ToString() == "Delete")
                     {  
                         numParameters = Convert.ToInt32(row.ItemArray[4].ToString());
                         UserControls ctrl = new UserControls(); 
@@ -171,9 +171,6 @@ namespace DynamicApplication
                 
             }
 
-            void AddTextLabel()
-            { 
-            }
  /*           Button btn = new Button();
 
             btn.Width = 75;

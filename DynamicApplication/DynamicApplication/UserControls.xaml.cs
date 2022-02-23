@@ -145,8 +145,8 @@ namespace DynamicApplication
             }
  
            for(int a = 0; a < numParameters; a++)
-            {
-                
+            { 
+                  
                 Label lblSample = new Label();
                 lblSample.Content = info[a];
                 lblSample.FontFamily = new FontFamily("Century Gothic");
