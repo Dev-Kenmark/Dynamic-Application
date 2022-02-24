@@ -125,7 +125,7 @@ namespace DynamicApplication
             return str.Trim();
         }
         */
-        public void AddButton(int numParameters, string[] info, int numButtons)
+        public void AddButton(int numParameters, string[] info, int numButtons, string[] buttonnames, DataTable dt, int numGrids)
         {
           
             MsSqlInitializeFile();
@@ -141,69 +141,85 @@ namespace DynamicApplication
             //        da.Fill(Dt);
             //    }
             //}
- 
-           for(int a = 1; a <= numParameters; a++)
+
+            if (numGrids != 0)
             {
-                
-                Label lblSample = new Label();
-                lblSample.Content = info[a-1];
-                lblSample.FontFamily = new FontFamily("Century Gothic");
-                lblSample.FontSize = 13;
+                for (int a = 0; a < numGrids; ++a)
+                {
+                    StackPanel pnldg = new StackPanel();
+                pnldg.Children.Clear();
+                pnldg.Orientation = Orientation.Horizontal;
+                pnldg.Margin = new Thickness(10);
 
-                TextBox txtSample = new TextBox();  
-                txtSample.Width = 150;
-                txtSample.FontFamily = new FontFamily("Century Gothic");
-                txtSample.FontSize = 15;
-
-                StackPanel pnl = new StackPanel();
-                pnl.Children.Clear();   
-
-                pnl.Orientation = Orientation.Horizontal;
-                pnl.Margin = new Thickness(10); 
-
-                pnl.Children.Add(lblSample);
-                pnl.Children.Add(txtSample);
-
+                DataGrid dg = new DataGrid();
+                dg.ItemsSource = dt.DefaultView;
+                dg.IsReadOnly = true;
+                dg.Width = 625;
+                pnldg.Children.Add(dg);
                 stackPanel.Orientation = Orientation.Vertical;
                 stackPanel.Margin = new Thickness(10);
+
+                stackPanel.Children.Add(pnldg);
+                }
+            }
+
+
+            if (numParameters != 0)
+            {
+                for (int a = 0; a < numParameters; ++a)
+                {
+                    StackPanel pnl = new StackPanel();
+                    pnl.Children.Clear();
+                    pnl.Orientation = Orientation.Horizontal;
+                    pnl.Margin = new Thickness(10);
+
+                    Label lblSample = new Label();
+                    lblSample.Content = info[a];
+                    lblSample.FontFamily = new FontFamily("Century Gothic");
+                    lblSample.FontSize = 13;
+
+                    TextBox txtSample = new TextBox();  
+                    txtSample.Width = 150;
+                    txtSample.FontFamily = new FontFamily("Century Gothic");
+                    txtSample.FontSize = 15;
+
+                    pnl.Children.Add(lblSample);
+                    pnl.Children.Add(txtSample);
+
+                    stackPanel.Orientation = Orientation.Vertical;
+                    stackPanel.Margin = new Thickness(10);
+
+                    stackPanel.Children.Add(pnl);   
+                }
+            }
+            if (numButtons != 0)
+            {
                 StackPanel pnlbtn = new StackPanel();
                 pnlbtn.Children.Clear();
-
                 pnlbtn.Orientation = Orientation.Horizontal;
                 pnlbtn.Margin = new Thickness(10);
-
-                
-                if (a == numParameters && numButtons != 0)
+                for (int i = 0; i < numButtons; i++)
                 {
-                    for (int i = 0; i < numButtons; i++)
-                    {
-                        
-                        Button btn = new Button();
-                        //btn.Tag = Convert.ToInt32(row[0]);
+                    Button btn = new Button();
+                    btn.Width = 75;
+                    btn.Height = 40;
+                    btn.Margin = new Thickness(10, 10, 10, 10);
+                    btn.BorderBrush = Brushes.AliceBlue;
+                    btn.BorderThickness = new Thickness(2, 2, 2, 2);
+                    string p = "btn" + buttonnames[i].ToString();
+                    string strtrim = p.Trim();
+                    btn.Name = strtrim;
+                    btn.Content = buttonnames[i].ToString();
+                    btn.FontFamily = new FontFamily("Century Gothic");
+                    btn.FontSize = 15;
+                    btn.FontWeight = FontWeights.UltraBold;
 
-                        btn.Width = 75;
-                        btn.Height = 40;
-
-                        btn.Margin = new Thickness(10, 10, 10, 10);
-                        btn.BorderBrush = Brushes.AliceBlue;
-                        btn.BorderThickness = new Thickness(2, 2, 2, 2);
-                        string p = "btn" + info[a + i].ToString();
-                        string strtrim =  p.Trim();
-                        btn.Name = strtrim;
-                        btn.Content = info[a + i].ToString();
-
-                        btn.FontFamily = new FontFamily("Century Gothic");
-                        btn.FontSize = 15;
-                        btn.FontWeight = FontWeights.UltraBold;
-                        pnlbtn.Children.Add(btn);
-
-                    }
-
+                    pnlbtn.Children.Add(btn);
                 }
-                stackPanel.Children.Add(pnl);
+                stackPanel.Orientation = Orientation.Vertical;
+                stackPanel.Margin = new Thickness(10);
                 stackPanel.Children.Add(pnlbtn);
             }
-           
         }
 
     }

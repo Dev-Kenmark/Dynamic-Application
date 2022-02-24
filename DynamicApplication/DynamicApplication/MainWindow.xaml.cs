@@ -32,8 +32,9 @@ namespace DynamicApplication
         public static MySqlConnection mycon;
         public DataTable Dt = new DataTable();
 
-        public int numParameters, numButtons;
-        public string[] info;
+        public int numParameters, numButtons, numGrids;
+        public string[] info, buttonnames;
+        public DataTable dtable;
         public MainWindow()
         {
             InitializeComponent();
@@ -105,6 +106,7 @@ namespace DynamicApplication
                     Dt = new DataTable("Test");
                     da.Fill(Dt);
                 }
+                con.Close();
             }
             foreach (DataRow row in Dt.Rows)
             {
@@ -136,17 +138,36 @@ namespace DynamicApplication
                         
                         numParameters = Convert.ToInt32(row.ItemArray[4].ToString());
                         numButtons = Convert.ToInt32(row.ItemArray[9].ToString());
+                        numGrids = Convert.ToInt32(row.ItemArray[11].ToString());
                         UserControls ctrl = new UserControls();                    
   
                         string a = row.ItemArray[6].ToString();                   
                         string strtrim = a.Trim(); 
-                    
+                        string b = row.ItemArray[10].ToString();
+                        string strtrim1 = b.Trim();
                         if (!strtrim.Equals(""))
                         {
                             info = a.Split(',');                                        
                               
                         }
-                        ctrl.AddButton(numParameters, info, numButtons);
+                        if (!strtrim1.Equals(""))
+                        {
+                            buttonnames = b.Split(',');
+
+                        }
+                        using (SqlConnection con = new SqlConnection(mssqlConString))
+                        {
+                            con.Open();
+                            using (SqlCommand cmd = new SqlCommand("SELECT * FROM " + row.ItemArray[12].ToString(), con))
+                            {
+                                dtable = new DataTable();
+                                SqlDataReader dr = cmd.ExecuteReader();
+                                dtable.Load(dr);
+                            }
+                            con.Close();
+                        }
+                        
+                        ctrl.AddButton(numParameters, info, numButtons, buttonnames, dtable, numGrids);
                         pnlDock.Children.Add(ctrl);
                     }
                     else if (row[2].ToString() == "3")
