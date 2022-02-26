@@ -32,15 +32,18 @@ namespace DynamicApplication
         public static MySqlConnection mycon;
         public DataTable Dt = new DataTable();
         MainWindow main = new MainWindow();
-
-       
+        public string[] storedprodreal, paranames;
+        public int parametercount;
+        //Button btn = new Button();
+        public TextBox txtSample;
+        
         public UserControls()
         {
             InitializeComponent();
            
             MsSqlInitializeFile();
             mssqlConString = MsSqlRead();
-
+            
         }
         //mssql
         /*postgre
@@ -125,9 +128,12 @@ namespace DynamicApplication
             return str.Trim();
         }
         */
-        public void AddButton(int numParameters, string[] info, int numButtons, string[] buttonnames, DataTable dt, int numGrids)
+        public void AddButton(string[] storedprod, int numParameters, string[] parameters, string[] info, int numButtons, string[] buttonnames, DataTable dt, int numGrids)
         {
-          
+            storedprodreal = storedprod;
+            paranames = parameters;
+            
+            parametercount = numParameters;
             MsSqlInitializeFile();
             mssqlConString = MsSqlRead();
             //string query = "SELECT * FROM dbo.TASK6TBL";
@@ -178,10 +184,11 @@ namespace DynamicApplication
                     lblSample.FontFamily = new FontFamily("Century Gothic");
                     lblSample.FontSize = 13;
 
-                    TextBox txtSample = new TextBox();  
+                    txtSample = new TextBox();
                     txtSample.Width = 150;
                     txtSample.FontFamily = new FontFamily("Century Gothic");
                     txtSample.FontSize = 15;
+                    txtSample.Name = "txtBox" + a.ToString();
 
                     pnl.Children.Add(lblSample);
                     pnl.Children.Add(txtSample);
@@ -189,10 +196,10 @@ namespace DynamicApplication
                     stackPanel.Orientation = Orientation.Vertical;
                     stackPanel.Margin = new Thickness(10);
 
-                    stackPanel.Children.Add(pnl);   
+                    stackPanel.Children.Add(pnl);
                 }
             }
-            if (numButtons != 0)
+                if (numButtons != 0)
             {
                 StackPanel pnlbtn = new StackPanel();
                 pnlbtn.Children.Clear();
@@ -213,7 +220,11 @@ namespace DynamicApplication
                     btn.FontFamily = new FontFamily("Century Gothic");
                     btn.FontSize = 15;
                     btn.FontWeight = FontWeights.UltraBold;
-
+                    if (i == 0) btn.Click += ClickHandler0;
+                    else if (i == 1) btn.Click += ClickHandler1;
+                    else if (i == 2) btn.Click += ClickHandler2;
+                    else if (i == 3) btn.Click += ClickHandler3;
+                    else if (i == 4) btn.Click += ClickHandler4;
                     pnlbtn.Children.Add(btn);
                 }
                 stackPanel.Orientation = Orientation.Vertical;
@@ -222,5 +233,188 @@ namespace DynamicApplication
             }
         }
 
+        private void ClickHandler0(object sender, RoutedEventArgs e)
+        {
+            if (storedprodreal.Count() == 1)
+            {
+                //string[] values;
+                //for (int a = 0; a < parametercount; ++a)
+                //{
+                //    values[a] = ((TextBox)stackPanel.Children["txtBox" +a.ToString()]).Text;
+                //}
+                try
+                {
+                    using (SqlConnection con = new SqlConnection(mssqlConString))
+                    {
+                        con.Open();
+                        var command = con.CreateCommand();
+                        {
+                            command.CommandType = CommandType.StoredProcedure;
+                            command.CommandText = "[dbo].[" + storedprodreal[0].ToString() + "]";
+                            if (parametercount != 0)
+                            {
+                                for (int a = 0; a < parametercount; ++a)
+                                {
+                                    command.Parameters.AddWithValue("@" + paranames[a], "charlie");
+                                }
+                            }
+                            command.ExecuteNonQuery();
+                            con.Close();
+                            MessageBox.Show("Query executed successfully!");
+                        }
+
+
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error Occurred" + Environment.NewLine + ex.ToString());
+                }
+
+
+            }
+        }
+        private void ClickHandler1(object sender, RoutedEventArgs e)
+        {
+            if (storedprodreal.Count() == 2)
+            {
+                try
+                {
+                    using (SqlConnection con = new SqlConnection(mssqlConString))
+                    {
+                        con.Open();
+                        var command = con.CreateCommand();
+                        {
+                            command.CommandType = CommandType.StoredProcedure;
+                            command.CommandText = "[dbo].[" + storedprodreal[0].ToString() + "]";
+                            if (parametercount != 0)
+                            {
+                                for (int a = 0; a < parametercount; ++a)
+                                {
+                                    command.Parameters.AddWithValue("@" + paranames[a], "charlie");
+                                }
+                            }
+                            command.ExecuteNonQuery();
+                            con.Close();
+                            MessageBox.Show("Query executed successfully!");
+                        }
+
+
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error Occurred" + Environment.NewLine + ex.ToString());
+                }
+            }
+
+        }
+        private void ClickHandler2(object sender, RoutedEventArgs e)
+        {
+            if (storedprodreal.Count() == 3)
+            {
+                try
+                {
+                    using (SqlConnection con = new SqlConnection(mssqlConString))
+                    {
+                        con.Open();
+                        var command = con.CreateCommand();
+                        {
+                            command.CommandType = CommandType.StoredProcedure;
+                            command.CommandText = "[dbo].[" + storedprodreal[0].ToString() + "]";
+                            if (parametercount != 0)
+                            {
+                                for (int a = 0; a < parametercount; ++a)
+                                {
+                                    command.Parameters.AddWithValue("@" + paranames[a], "charlie");
+                                }
+                            }
+                            command.ExecuteNonQuery();
+                            con.Close();
+                            MessageBox.Show("Query executed successfully!");
+                        }
+
+
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error Occurred" + Environment.NewLine + ex.ToString());
+                }
+            }
+        }
+        private void ClickHandler3(object sender, RoutedEventArgs e)
+        {
+            if (storedprodreal.Count() == 4)
+            {
+                try
+                {
+                    using (SqlConnection con = new SqlConnection(mssqlConString))
+                    {
+                        con.Open();
+                        var command = con.CreateCommand();
+                        {
+                            command.CommandType = CommandType.StoredProcedure;
+                            command.CommandText = "[dbo].[" + storedprodreal[0].ToString() + "]";
+                            if (parametercount != 0)
+                            {
+                                for (int a = 0; a < parametercount; ++a)
+                                {
+                                    command.Parameters.AddWithValue("@" + paranames[a], "charlie");
+                                }
+                            }
+                            command.ExecuteNonQuery();
+                            con.Close();
+                            MessageBox.Show("Query executed successfully!");
+                        }
+
+
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error Occurred" + Environment.NewLine + ex.ToString());
+                }
+            }
+        }
+        private void ClickHandler4(object sender, RoutedEventArgs e)
+        {
+            if (storedprodreal.Count() == 5)
+            {
+                try
+                {
+                    using (SqlConnection con = new SqlConnection(mssqlConString))
+                    {
+                        con.Open();
+                        var command = con.CreateCommand();
+                        {
+                            command.CommandType = CommandType.StoredProcedure;
+                            command.CommandText = "[dbo].[" + storedprodreal[0].ToString() + "]";
+                            if (parametercount != 0)
+                            {
+                                for (int a = 0; a < parametercount; ++a)
+                                {
+                                    command.Parameters.AddWithValue("@" + paranames[a], "charlie");
+                                }
+                            }
+                            command.ExecuteNonQuery();
+                            con.Close();
+                            MessageBox.Show("Query executed successfully!");
+                        }
+
+
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error Occurred" + Environment.NewLine + ex.ToString());
+                }
+            }
+        }
     }
 }

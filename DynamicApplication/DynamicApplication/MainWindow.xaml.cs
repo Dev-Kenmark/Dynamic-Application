@@ -33,7 +33,7 @@ namespace DynamicApplication
         public DataTable Dt = new DataTable();
 
         public int numParameters, numButtons, numGrids;
-        public string[] info, buttonnames;
+        public string[] info, buttonnames, parameters, storedprod;
         public DataTable dtable;
         public MainWindow()
         {
@@ -145,6 +145,10 @@ namespace DynamicApplication
                         string strtrim = a.Trim(); 
                         string b = row.ItemArray[10].ToString();
                         string strtrim1 = b.Trim();
+                        string c  = row.ItemArray[5].ToString();
+                        string strtrim2 = c.Trim();
+                        string d = row.ItemArray[3].ToString();
+                        string strtrim3 = d.Trim();
                         if (!strtrim.Equals(""))
                         {
                             info = a.Split(',');                                        
@@ -153,6 +157,16 @@ namespace DynamicApplication
                         if (!strtrim1.Equals(""))
                         {
                             buttonnames = b.Split(',');
+
+                        }
+                        if (!strtrim2.Equals(""))
+                        {
+                            parameters = c.Split(',');
+
+                        }
+                        if (!strtrim3.Equals(""))
+                        {
+                            storedprod = d.Split(',');
 
                         }
                         using (SqlConnection con = new SqlConnection(mssqlConString))
@@ -167,7 +181,7 @@ namespace DynamicApplication
                             con.Close();
                         }
                         
-                        ctrl.AddButton(numParameters, info, numButtons, buttonnames, dtable, numGrids);
+                        ctrl.AddButton(storedprod, numParameters, parameters, info, numButtons, buttonnames, dtable, numGrids);
                         pnlDock.Children.Add(ctrl);
                     }
                     else if (row[2].ToString() == "3")
