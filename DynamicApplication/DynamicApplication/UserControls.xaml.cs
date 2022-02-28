@@ -35,8 +35,8 @@ namespace DynamicApplication
         public string[] storedprodreal, paranames;
         public int parametercount;
         //Button btn = new Button();
-        public TextBox txtSample;
-        
+        TextBox txtSample;
+        public string[] t;
         public UserControls()
         {
             InitializeComponent();
@@ -134,6 +134,7 @@ namespace DynamicApplication
             paranames = parameters;
             
             parametercount = numParameters;
+            t = new string[parametercount];
             MsSqlInitializeFile();
             mssqlConString = MsSqlRead();
             //string query = "SELECT * FROM dbo.TASK6TBL";
@@ -189,10 +190,33 @@ namespace DynamicApplication
                     txtSample.FontFamily = new FontFamily("Century Gothic");
                     txtSample.FontSize = 15;
                     txtSample.Name = "txtBox" + a.ToString();
-
+                    
+                    
                     pnl.Children.Add(lblSample);
                     pnl.Children.Add(txtSample);
+                    stackPanel.RegisterName(txtSample.Name, txtSample);
+                    
+                    //for (int i = 0; i < parametercount; i++)
+                    //{
+                    //    t[i] = stackPanel.Children[Convert.ToInt32("txtBox" + (i+1))];
+                    //}
+                    //foreach(UIElement uie in stackPanel.Children)
+                    //{
+                    //    if(uie is StackPanel)
+                    //    {
+                    //        int i = 0;
+                    //        foreach (UIElement ctrl in (uie as StackPanel).Children)
+                    //        {
 
+                    //            if (ctrl is TextBox)
+                    //            {
+                    //                t[i] = ctrl.ToString();
+                    //                i++;
+                    //            }
+                    //        }
+                    //    }
+                    //}
+                    
                     stackPanel.Orientation = Orientation.Vertical;
                     stackPanel.Margin = new Thickness(10);
 
@@ -242,6 +266,21 @@ namespace DynamicApplication
                 //{
                 //    values[a] = ((TextBox)stackPanel.Children["txtBox" +a.ToString()]).Text;
                 //}
+                //int i = 0;
+                //foreach (var child in stackPanel.Children)
+                //{
+                //    if (child.GetType() == typeof(TextBox))
+                //    {
+                //        txtSample = (TextBox)child;
+                //        t[i] = txtSample.Text;
+                //        i++;
+                //    }
+                //}
+                for (int a = 0; a < parametercount; ++a)
+                {
+                    TextBox txtSample = (TextBox)this.stackPanel.FindName("txtBox" + a.ToString());
+                    t[a] = txtSample.Text;
+                }
                 try
                 {
                     using (SqlConnection con = new SqlConnection(mssqlConString))
@@ -255,7 +294,7 @@ namespace DynamicApplication
                             {
                                 for (int a = 0; a < parametercount; ++a)
                                 {
-                                    command.Parameters.AddWithValue("@" + paranames[a], "charlie");
+                                    command.Parameters.AddWithValue("@" + paranames[a], t[a]);
                                 }
                             }
                             command.ExecuteNonQuery();
@@ -279,6 +318,11 @@ namespace DynamicApplication
         {
             if (storedprodreal.Count() == 2)
             {
+                for (int a = 0; a < parametercount; ++a)
+                {
+                    TextBox txtSample = (TextBox)this.stackPanel.FindName("txtBox" + a.ToString());
+                    t[a] = txtSample.Text;
+                }
                 try
                 {
                     using (SqlConnection con = new SqlConnection(mssqlConString))
@@ -287,12 +331,12 @@ namespace DynamicApplication
                         var command = con.CreateCommand();
                         {
                             command.CommandType = CommandType.StoredProcedure;
-                            command.CommandText = "[dbo].[" + storedprodreal[0].ToString() + "]";
+                            command.CommandText = "[dbo].[" + storedprodreal[1].ToString() + "]";
                             if (parametercount != 0)
                             {
                                 for (int a = 0; a < parametercount; ++a)
                                 {
-                                    command.Parameters.AddWithValue("@" + paranames[a], "charlie");
+                                    command.Parameters.AddWithValue("@" + paranames[a], t[a]);
                                 }
                             }
                             command.ExecuteNonQuery();
@@ -308,6 +352,8 @@ namespace DynamicApplication
                 {
                     MessageBox.Show("Error Occurred" + Environment.NewLine + ex.ToString());
                 }
+
+
             }
 
         }
@@ -315,6 +361,11 @@ namespace DynamicApplication
         {
             if (storedprodreal.Count() == 3)
             {
+                for (int a = 0; a < parametercount; ++a)
+                {
+                    TextBox txtSample = (TextBox)this.stackPanel.FindName("txtBox" + a.ToString());
+                    t[a] = txtSample.Text;
+                }
                 try
                 {
                     using (SqlConnection con = new SqlConnection(mssqlConString))
@@ -323,12 +374,12 @@ namespace DynamicApplication
                         var command = con.CreateCommand();
                         {
                             command.CommandType = CommandType.StoredProcedure;
-                            command.CommandText = "[dbo].[" + storedprodreal[0].ToString() + "]";
+                            command.CommandText = "[dbo].[" + storedprodreal[2].ToString() + "]";
                             if (parametercount != 0)
                             {
                                 for (int a = 0; a < parametercount; ++a)
                                 {
-                                    command.Parameters.AddWithValue("@" + paranames[a], "charlie");
+                                    command.Parameters.AddWithValue("@" + paranames[a], t[a]);
                                 }
                             }
                             command.ExecuteNonQuery();
@@ -344,12 +395,19 @@ namespace DynamicApplication
                 {
                     MessageBox.Show("Error Occurred" + Environment.NewLine + ex.ToString());
                 }
+
+
             }
         }
         private void ClickHandler3(object sender, RoutedEventArgs e)
         {
             if (storedprodreal.Count() == 4)
             {
+                for (int a = 0; a < parametercount; ++a)
+                {
+                    TextBox txtSample = (TextBox)this.stackPanel.FindName("txtBox" + a.ToString());
+                    t[a] = txtSample.Text;
+                }
                 try
                 {
                     using (SqlConnection con = new SqlConnection(mssqlConString))
@@ -358,12 +416,12 @@ namespace DynamicApplication
                         var command = con.CreateCommand();
                         {
                             command.CommandType = CommandType.StoredProcedure;
-                            command.CommandText = "[dbo].[" + storedprodreal[0].ToString() + "]";
+                            command.CommandText = "[dbo].[" + storedprodreal[3].ToString() + "]";
                             if (parametercount != 0)
                             {
                                 for (int a = 0; a < parametercount; ++a)
                                 {
-                                    command.Parameters.AddWithValue("@" + paranames[a], "charlie");
+                                    command.Parameters.AddWithValue("@" + paranames[a], t[a]);
                                 }
                             }
                             command.ExecuteNonQuery();
@@ -379,12 +437,19 @@ namespace DynamicApplication
                 {
                     MessageBox.Show("Error Occurred" + Environment.NewLine + ex.ToString());
                 }
+
+
             }
         }
         private void ClickHandler4(object sender, RoutedEventArgs e)
         {
             if (storedprodreal.Count() == 5)
             {
+                for (int a = 0; a < parametercount; ++a)
+                {
+                    TextBox txtSample = (TextBox)this.stackPanel.FindName("txtBox" + a.ToString());
+                    t[a] = txtSample.Text;
+                }
                 try
                 {
                     using (SqlConnection con = new SqlConnection(mssqlConString))
@@ -393,12 +458,12 @@ namespace DynamicApplication
                         var command = con.CreateCommand();
                         {
                             command.CommandType = CommandType.StoredProcedure;
-                            command.CommandText = "[dbo].[" + storedprodreal[0].ToString() + "]";
+                            command.CommandText = "[dbo].[" + storedprodreal[4].ToString() + "]";
                             if (parametercount != 0)
                             {
                                 for (int a = 0; a < parametercount; ++a)
                                 {
-                                    command.Parameters.AddWithValue("@" + paranames[a], "charlie");
+                                    command.Parameters.AddWithValue("@" + paranames[a], t[a]);
                                 }
                             }
                             command.ExecuteNonQuery();
@@ -414,6 +479,8 @@ namespace DynamicApplication
                 {
                     MessageBox.Show("Error Occurred" + Environment.NewLine + ex.ToString());
                 }
+
+
             }
         }
     }
