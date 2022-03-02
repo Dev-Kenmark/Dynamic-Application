@@ -27,7 +27,7 @@ namespace DynamicApplication
     {
         private static string mssqlfile = AppDomain.CurrentDomain.BaseDirectory + "\\mssqlFile";
         private static string mysqlfile = AppDomain.CurrentDomain.BaseDirectory + "\\mysqlFile";
-        public static string mssqlConString, mysqlConString;
+        public static string mssqlConString, mysqlConString, procname;
         public static SqlConnection mscon = new SqlConnection(mssqlConString);
         public static MySqlConnection mycon;
         public DataTable Dt = new DataTable();
@@ -128,11 +128,11 @@ namespace DynamicApplication
             return str.Trim();
         }
         */
-        public void AddButton(string[] storedprod, int numParameters, string[] parameters, string[] info, int numButtons, string[] buttonnames, DataTable dt, int numGrids)
+        public void AddButton(string forLogs,string[] storedprod, int numParameters, string[] parameters, string[] info, int numButtons, string[] buttonnames, DataTable dt, int numGrids)
         {
             storedprodreal = storedprod;
             paranames = parameters;
-            
+            procname = forLogs;
             parametercount = numParameters;
             t = new string[parametercount];
             MsSqlInitializeFile();
@@ -305,6 +305,12 @@ namespace DynamicApplication
 
                     }
 
+                    using (StreamWriter writer = File.AppendText(AppDomain.CurrentDomain.BaseDirectory + "Logs_" + DateTime.Now.ToString("MM_dd_yyyy") +".txt"))
+                    {
+                        writer.WriteLine("Process: " + procname + "\t\t\tDate " + DateTime.Now.ToString("MM-dd-yy hh:mm:ss"));
+                        writer.Close();
+                    }
+
                 }
                 catch (Exception ex)
                 {
@@ -345,6 +351,11 @@ namespace DynamicApplication
                         }
 
 
+                    }
+                    using (StreamWriter writer = File.AppendText(AppDomain.CurrentDomain.BaseDirectory + "Logs_" + DateTime.Now.ToString("MM_dd_yyyy") + ".txt"))
+                    {
+                        writer.WriteLine("Process: " + procname + "\t\t\tDate " + DateTime.Now.ToString("MM-dd-yy hh:mm:ss"));
+                        writer.Close();
                     }
 
                 }
@@ -389,6 +400,11 @@ namespace DynamicApplication
 
 
                     }
+                    using (StreamWriter writer = File.AppendText(AppDomain.CurrentDomain.BaseDirectory + "Logs_" + DateTime.Now.ToString("MM_dd_yyyy") + ".txt"))
+                    {
+                        writer.WriteLine("Process: " + procname + "\t\t\tDate " + DateTime.Now.ToString("MM-dd-yy hh:mm:ss"));
+                        writer.Close();
+                    }
 
                 }
                 catch (Exception ex)
@@ -431,6 +447,11 @@ namespace DynamicApplication
 
 
                     }
+                    using (StreamWriter writer = File.AppendText(AppDomain.CurrentDomain.BaseDirectory + "Logs_" + DateTime.Now.ToString("MM_dd_yyyy") + ".txt"))
+                    {
+                        writer.WriteLine("Process: " + procname + "\t\t\tDate " + DateTime.Now.ToString("MM-dd-yy hh:mm:ss"));
+                        writer.Close();
+                    }
 
                 }
                 catch (Exception ex)
@@ -472,6 +493,11 @@ namespace DynamicApplication
                         }
 
 
+                    }
+                    using (StreamWriter writer = File.AppendText(AppDomain.CurrentDomain.BaseDirectory + "Logs_" + DateTime.Now.ToString("MM_dd_yyyy") + ".txt"))
+                    {
+                        writer.WriteLine("Process: " + procname + "\t\t\tDate " + DateTime.Now.ToString("MM-dd-yy hh:mm:ss"));
+                        writer.Close();
                     }
 
                 }

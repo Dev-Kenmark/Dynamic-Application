@@ -27,7 +27,7 @@ namespace DynamicApplication
     {
         private static string mssqlfile = AppDomain.CurrentDomain.BaseDirectory + "\\mssqlFile";
         private static string mysqlfile = AppDomain.CurrentDomain.BaseDirectory + "\\mysqlFile";
-        public static string mssqlConString, mysqlConString;
+        public static string mssqlConString, mysqlConString, forLogs;
         public static SqlConnection mscon = new SqlConnection(mssqlConString);
         public static MySqlConnection mycon;
         public DataTable Dt = new DataTable();
@@ -139,6 +139,7 @@ namespace DynamicApplication
                         numParameters = Convert.ToInt32(row.ItemArray[4].ToString());
                         numButtons = Convert.ToInt32(row.ItemArray[9].ToString());
                         numGrids = Convert.ToInt32(row.ItemArray[11].ToString());
+                        forLogs = row.ItemArray[1].ToString();
                         UserControls ctrl = new UserControls();                    
   
                         string a = row.ItemArray[6].ToString();                   
@@ -181,7 +182,7 @@ namespace DynamicApplication
                             con.Close();
                         }
                         
-                        ctrl.AddButton(storedprod, numParameters, parameters, info, numButtons, buttonnames, dtable, numGrids);
+                        ctrl.AddButton(forLogs, storedprod, numParameters, parameters, info, numButtons, buttonnames, dtable, numGrids);
                         pnlDock.Children.Add(ctrl);
                     }
                     else if (row[2].ToString() == "3")
@@ -193,6 +194,7 @@ namespace DynamicApplication
                         numParameters = Convert.ToInt32(row.ItemArray[4].ToString());
                         numButtons = Convert.ToInt32(row.ItemArray[9].ToString());
                         numGrids = Convert.ToInt32(row.ItemArray[11].ToString());
+                        forLogs = row.ItemArray[1].ToString();
                         UserControls ctrl = new UserControls();
 
                         string a = row.ItemArray[6].ToString();
@@ -235,7 +237,7 @@ namespace DynamicApplication
                             con.Close();
                         }
 
-                        ctrl.AddButton(storedprod, numParameters, parameters, info, numButtons, buttonnames, dtable, numGrids);
+                        ctrl.AddButton(forLogs, storedprod, numParameters, parameters, info, numButtons, buttonnames, dtable, numGrids);
                         pnlDock.Children.Add(ctrl);
 
                     }
@@ -248,6 +250,7 @@ namespace DynamicApplication
                         numParameters = Convert.ToInt32(row.ItemArray[4].ToString());
                         numButtons = Convert.ToInt32(row.ItemArray[9].ToString());
                         numGrids = Convert.ToInt32(row.ItemArray[11].ToString());
+                        forLogs = row.ItemArray[1].ToString();
                         UserControls ctrl = new UserControls();
 
                         string a = row.ItemArray[6].ToString();
@@ -290,7 +293,7 @@ namespace DynamicApplication
                             con.Close();
                         }
 
-                        ctrl.AddButton(storedprod, numParameters, parameters, info, numButtons, buttonnames, dtable, numGrids);
+                        ctrl.AddButton(forLogs, storedprod, numParameters, parameters, info, numButtons, buttonnames, dtable, numGrids);
                         pnlDock.Children.Add(ctrl);
 
                     }
