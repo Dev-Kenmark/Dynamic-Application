@@ -297,6 +297,405 @@ namespace DynamicApplication
                         pnlDock.Children.Add(ctrl);
 
                     }
+
+                    else if (row[2].ToString() == "5")
+                    {
+                        //numParameters = Convert.ToInt32(row.ItemArray[4].ToString());
+                        //UserControl2 ctrl = new UserControl2();;
+                        //pnlDock.Children.Add(ctrl);
+
+                        numParameters = Convert.ToInt32(row.ItemArray[4].ToString());
+                        numButtons = Convert.ToInt32(row.ItemArray[9].ToString());
+                        numGrids = Convert.ToInt32(row.ItemArray[11].ToString());
+                        forLogs = row.ItemArray[1].ToString();
+                        UserControls ctrl = new UserControls();
+
+                        string a = row.ItemArray[6].ToString();
+                        string strtrim = a.Trim();
+                        string b = row.ItemArray[10].ToString();
+                        string strtrim1 = b.Trim();
+                        string c = row.ItemArray[5].ToString();
+                        string strtrim2 = c.Trim();
+                        string d = row.ItemArray[3].ToString();
+                        string strtrim3 = d.Trim();
+                        if (!strtrim.Equals(""))
+                        {
+                            info = a.Split(',');
+
+                        }
+                        if (!strtrim1.Equals(""))
+                        {
+                            buttonnames = b.Split(',');
+
+                        }
+                        if (!strtrim2.Equals(""))
+                        {
+                            parameters = c.Split(',');
+
+                        }
+                        if (!strtrim3.Equals(""))
+                        {
+                            storedprod = d.Split(',');
+
+                        }
+                        using (SqlConnection con = new SqlConnection(mssqlConString))
+                        {
+                            con.Open();
+                            using (SqlCommand cmd = new SqlCommand("SELECT * FROM " + row.ItemArray[12].ToString(), con))
+                            {
+                                dtable = new DataTable();
+                                SqlDataReader dr = cmd.ExecuteReader();
+                                dtable.Load(dr);
+                            }
+                            con.Close();
+                        }
+
+                        ctrl.AddButton(forLogs, storedprod, numParameters, parameters, info, numButtons, buttonnames, dtable, numGrids);
+                        pnlDock.Children.Add(ctrl);
+
+                    }
+
+                    else if (row[2].ToString() == "6")
+                    {
+                        //numParameters = Convert.ToInt32(row.ItemArray[4].ToString());
+                        //UserControl2 ctrl = new UserControl2();;
+                        //pnlDock.Children.Add(ctrl);
+
+                        numParameters = Convert.ToInt32(row.ItemArray[4].ToString());
+                        numButtons = Convert.ToInt32(row.ItemArray[9].ToString());
+                        numGrids = Convert.ToInt32(row.ItemArray[11].ToString());
+                        forLogs = row.ItemArray[1].ToString();
+                        UserControls ctrl = new UserControls();
+
+                        string a = row.ItemArray[6].ToString();
+                        string strtrim = a.Trim();
+                        string b = row.ItemArray[10].ToString();
+                        string strtrim1 = b.Trim();
+                        string c = row.ItemArray[5].ToString();
+                        string strtrim2 = c.Trim();
+                        string d = row.ItemArray[3].ToString();
+                        string strtrim3 = d.Trim();
+                        if (!strtrim.Equals(""))
+                        {
+                            info = a.Split(',');
+
+                        }
+                        if (!strtrim1.Equals(""))
+                        {
+                            buttonnames = b.Split(',');
+
+                        }
+                        if (!strtrim2.Equals(""))
+                        {
+                            parameters = c.Split(',');
+
+                        }
+                        if (!strtrim3.Equals(""))
+                        {
+                            storedprod = d.Split(',');
+
+                        }
+                        using (SqlConnection con = new SqlConnection(mssqlConString))
+                        {
+                            con.Open();
+                            using (SqlCommand cmd = new SqlCommand("SELECT * FROM " + row.ItemArray[12].ToString(), con))
+                            {
+                                dtable = new DataTable();
+                                SqlDataReader dr = cmd.ExecuteReader();
+                                dtable.Load(dr);
+                            }
+                            con.Close();
+                        }
+
+                        ctrl.AddButton(forLogs, storedprod, numParameters, parameters, info, numButtons, buttonnames, dtable, numGrids);
+                        pnlDock.Children.Add(ctrl);
+
+                    }
+
+                    else if (row[2].ToString() == "7")
+                    {
+                        //numParameters = Convert.ToInt32(row.ItemArray[4].ToString());
+                        //UserControl2 ctrl = new UserControl2();;
+                        //pnlDock.Children.Add(ctrl);
+
+                        numParameters = Convert.ToInt32(row.ItemArray[4].ToString());
+                        numButtons = Convert.ToInt32(row.ItemArray[9].ToString());
+                        numGrids = Convert.ToInt32(row.ItemArray[11].ToString());
+                        forLogs = row.ItemArray[1].ToString();
+                        UserControls ctrl = new UserControls();
+
+                        string a = row.ItemArray[6].ToString();
+                        string strtrim = a.Trim();
+                        string b = row.ItemArray[10].ToString();
+                        string strtrim1 = b.Trim();
+                        string c = row.ItemArray[5].ToString();
+                        string strtrim2 = c.Trim();
+                        string d = row.ItemArray[3].ToString();
+                        string strtrim3 = d.Trim();
+                        if (!strtrim.Equals(""))
+                        {
+                            info = a.Split(',');
+
+                        }
+                        if (!strtrim1.Equals(""))
+                        {
+                            buttonnames = b.Split(',');
+
+                        }
+                        if (!strtrim2.Equals(""))
+                        {
+                            parameters = c.Split(',');
+
+                        }
+                        if (!strtrim3.Equals(""))
+                        {
+                            storedprod = d.Split(',');
+
+                        }
+                        using (SqlConnection con = new SqlConnection(mssqlConString))
+                        {
+                            con.Open();
+                            using (SqlCommand cmd = new SqlCommand("SELECT * FROM " + row.ItemArray[12].ToString(), con))
+                            {
+                                dtable = new DataTable();
+                                SqlDataReader dr = cmd.ExecuteReader();
+                                dtable.Load(dr);
+                            }
+                            con.Close();
+                        }
+
+                        ctrl.AddButton(forLogs, storedprod, numParameters, parameters, info, numButtons, buttonnames, dtable, numGrids);
+                        pnlDock.Children.Add(ctrl);
+
+                    }
+
+                    else if (row[2].ToString() == "8")
+                    {
+                        //numParameters = Convert.ToInt32(row.ItemArray[4].ToString());
+                        //UserControl2 ctrl = new UserControl2();;
+                        //pnlDock.Children.Add(ctrl);
+
+                        numParameters = Convert.ToInt32(row.ItemArray[4].ToString());
+                        numButtons = Convert.ToInt32(row.ItemArray[9].ToString());
+                        numGrids = Convert.ToInt32(row.ItemArray[11].ToString());
+                        forLogs = row.ItemArray[1].ToString();
+                        UserControls ctrl = new UserControls();
+
+                        string a = row.ItemArray[6].ToString();
+                        string strtrim = a.Trim();
+                        string b = row.ItemArray[10].ToString();
+                        string strtrim1 = b.Trim();
+                        string c = row.ItemArray[5].ToString();
+                        string strtrim2 = c.Trim();
+                        string d = row.ItemArray[3].ToString();
+                        string strtrim3 = d.Trim();
+                        if (!strtrim.Equals(""))
+                        {
+                            info = a.Split(',');
+
+                        }
+                        if (!strtrim1.Equals(""))
+                        {
+                            buttonnames = b.Split(',');
+
+                        }
+                        if (!strtrim2.Equals(""))
+                        {
+                            parameters = c.Split(',');
+
+                        }
+                        if (!strtrim3.Equals(""))
+                        {
+                            storedprod = d.Split(',');
+
+                        }
+                        using (SqlConnection con = new SqlConnection(mssqlConString))
+                        {
+                            con.Open();
+                            using (SqlCommand cmd = new SqlCommand("SELECT * FROM " + row.ItemArray[12].ToString(), con))
+                            {
+                                dtable = new DataTable();
+                                SqlDataReader dr = cmd.ExecuteReader();
+                                dtable.Load(dr);
+                            }
+                            con.Close();
+                        }
+
+                        ctrl.AddButton(forLogs, storedprod, numParameters, parameters, info, numButtons, buttonnames, dtable, numGrids);
+                        pnlDock.Children.Add(ctrl);
+
+                    }
+
+                    else if (row[2].ToString() == "9")
+                    {
+                        //numParameters = Convert.ToInt32(row.ItemArray[4].ToString());
+                        //UserControl2 ctrl = new UserControl2();;
+                        //pnlDock.Children.Add(ctrl);
+
+                        numParameters = Convert.ToInt32(row.ItemArray[4].ToString());
+                        numButtons = Convert.ToInt32(row.ItemArray[9].ToString());
+                        numGrids = Convert.ToInt32(row.ItemArray[11].ToString());
+                        forLogs = row.ItemArray[1].ToString();
+                        UserControls ctrl = new UserControls();
+
+                        string a = row.ItemArray[6].ToString();
+                        string strtrim = a.Trim();
+                        string b = row.ItemArray[10].ToString();
+                        string strtrim1 = b.Trim();
+                        string c = row.ItemArray[5].ToString();
+                        string strtrim2 = c.Trim();
+                        string d = row.ItemArray[3].ToString();
+                        string strtrim3 = d.Trim();
+                        if (!strtrim.Equals(""))
+                        {
+                            info = a.Split(',');
+
+                        }
+                        if (!strtrim1.Equals(""))
+                        {
+                            buttonnames = b.Split(',');
+
+                        }
+                        if (!strtrim2.Equals(""))
+                        {
+                            parameters = c.Split(',');
+
+                        }
+                        if (!strtrim3.Equals(""))
+                        {
+                            storedprod = d.Split(',');
+
+                        }
+                        using (SqlConnection con = new SqlConnection(mssqlConString))
+                        {
+                            con.Open();
+                            using (SqlCommand cmd = new SqlCommand("SELECT * FROM " + row.ItemArray[12].ToString(), con))
+                            {
+                                dtable = new DataTable();
+                                SqlDataReader dr = cmd.ExecuteReader();
+                                dtable.Load(dr);
+                            }
+                            con.Close();
+                        }
+
+                        ctrl.AddButton(forLogs, storedprod, numParameters, parameters, info, numButtons, buttonnames, dtable, numGrids);
+                        pnlDock.Children.Add(ctrl);
+
+                    }
+
+                    else if (row[2].ToString() == "10")
+                    {
+                        //numParameters = Convert.ToInt32(row.ItemArray[4].ToString());
+                        //UserControl2 ctrl = new UserControl2();;
+                        //pnlDock.Children.Add(ctrl);
+
+                        numParameters = Convert.ToInt32(row.ItemArray[4].ToString());
+                        numButtons = Convert.ToInt32(row.ItemArray[9].ToString());
+                        numGrids = Convert.ToInt32(row.ItemArray[11].ToString());
+                        forLogs = row.ItemArray[1].ToString();
+                        UserControls ctrl = new UserControls();
+
+                        string a = row.ItemArray[6].ToString();
+                        string strtrim = a.Trim();
+                        string b = row.ItemArray[10].ToString();
+                        string strtrim1 = b.Trim();
+                        string c = row.ItemArray[5].ToString();
+                        string strtrim2 = c.Trim();
+                        string d = row.ItemArray[3].ToString();
+                        string strtrim3 = d.Trim();
+                        if (!strtrim.Equals(""))
+                        {
+                            info = a.Split(',');
+
+                        }
+                        if (!strtrim1.Equals(""))
+                        {
+                            buttonnames = b.Split(',');
+
+                        }
+                        if (!strtrim2.Equals(""))
+                        {
+                            parameters = c.Split(',');
+
+                        }
+                        if (!strtrim3.Equals(""))
+                        {
+                            storedprod = d.Split(',');
+
+                        }
+                        using (SqlConnection con = new SqlConnection(mssqlConString))
+                        {
+                            con.Open();
+                            using (SqlCommand cmd = new SqlCommand("SELECT * FROM " + row.ItemArray[12].ToString(), con))
+                            {
+                                dtable = new DataTable();
+                                SqlDataReader dr = cmd.ExecuteReader();
+                                dtable.Load(dr);
+                            }
+                            con.Close();
+                        }
+
+                        ctrl.AddButton(forLogs, storedprod, numParameters, parameters, info, numButtons, buttonnames, dtable, numGrids);
+                        pnlDock.Children.Add(ctrl);
+
+                    }
+
+                    else if (row[2].ToString() == "11")
+                    {
+                        //numParameters = Convert.ToInt32(row.ItemArray[4].ToString());
+                        //UserControl2 ctrl = new UserControl2();;
+                        //pnlDock.Children.Add(ctrl);
+
+                        numParameters = Convert.ToInt32(row.ItemArray[4].ToString());
+                        numButtons = Convert.ToInt32(row.ItemArray[9].ToString());
+                        numGrids = Convert.ToInt32(row.ItemArray[11].ToString());
+                        forLogs = row.ItemArray[1].ToString();
+                        UserControls ctrl = new UserControls();
+
+                        string a = row.ItemArray[6].ToString();
+                        string strtrim = a.Trim();
+                        string b = row.ItemArray[10].ToString();
+                        string strtrim1 = b.Trim();
+                        string c = row.ItemArray[5].ToString();
+                        string strtrim2 = c.Trim();
+                        string d = row.ItemArray[3].ToString();
+                        string strtrim3 = d.Trim();
+                        if (!strtrim.Equals(""))
+                        {
+                            info = a.Split(',');
+
+                        }
+                        if (!strtrim1.Equals(""))
+                        {
+                            buttonnames = b.Split(',');
+
+                        }
+                        if (!strtrim2.Equals(""))
+                        {
+                            parameters = c.Split(',');
+
+                        }
+                        if (!strtrim3.Equals(""))
+                        {
+                            storedprod = d.Split(',');
+
+                        }
+                        using (SqlConnection con = new SqlConnection(mssqlConString))
+                        {
+                            con.Open();
+                            using (SqlCommand cmd = new SqlCommand("SELECT * FROM " + row.ItemArray[12].ToString(), con))
+                            {
+                                dtable = new DataTable();
+                                SqlDataReader dr = cmd.ExecuteReader();
+                                dtable.Load(dr);
+                            }
+                            con.Close();
+                        }
+
+                        ctrl.AddButton(forLogs, storedprod, numParameters, parameters, info, numButtons, buttonnames, dtable, numGrids);
+                        pnlDock.Children.Add(ctrl);
+
+                    }
                 };
 
                 pnlStack.Children.Add(btn); 
